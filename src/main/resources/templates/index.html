@@ -1,38 +1,73 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cloud Computing &ndash; SoSe 2022</title>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Cloud Computing Project | SoSe 2022 | Kevin Kutzer und Fidel Söyünmez">
+
+        <title>Cloud Computing Project</title>
+    </head>
+ 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  </head>
-  <body class="bg-dark">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet"> 
 
-    <div class="container text-light">
-        <div class="row">
-            <div class="col mt-3">
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+        }
+    </style>
+ 
+    <body class="bg-dark text-light">
 
-              <h4>Cloud Computing Project</h3>
+        <div class="container">
+            <div class="row">
+                <div class="col mt-5 mb-3">
+                    <h1 class="text-center">Cloud Computing Project</h1>
+                    <h3 class="text-center">Kevin &amp; Fidel</h3>
+                    <p class="text-center my-4">Welcome to our Cloud Computing project webpage! Please enter your name to eternalize your name on our project site...</p>
 
-                <table class="table table-bordered table-dark my-4" th:unless="${#lists.isEmpty(persons)}">
-                  <thead>
-                    <tr>
-                      <th scope="col">ID</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Timestamp</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr th:each="person : ${persons}">
-                      <td th:text="${person.id}"/>            
-                      <td th:text="${person.name}"/>
-                      <!-- <td th:text="${person.timestamp}"/> -->
-                  </tr>
-                  </tbody>
-                </table>
+                    <div class="mt-5" style="max-width: 55rem; margin: auto;">
+                        <form method="POST" th:action="@{/}">
+                            <div class="mb-3">
+                                <label for="newuser" class="form-label">Who are you?</label>
+                                <input type="text" name="newuser" id="newuser" class="form-control" th:value="${newuser}" placeholder="Please enter your name here..." />
+                            </div>
+                            <div class="mb-3">
+                                <input type="submit" class="btn btn-outline-info" value="Add your name!">
+                            </div>
+                        </form>
+                    </div>
 
+                    <div class="table-responsive mt-5" style="max-width: 55rem; margin: auto;" th:unless="${#lists.isEmpty(users)}">
+                        <table class="table table-bordered table-dark table-hover">
+                            <tr>
+                                <th>ID</th>
+                                <th>NAME</th>
+                            </tr>
+                            <tr th:each="user : ${users}">
+                                <td th:text="${user.id}"/>            
+                                <td th:text="${user.username}"/>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="table-responsive mt-5" style="max-width: 55rem; margin: auto;" th:if="${#lists.isEmpty(users)}">
+                        <table class="table table-bordered table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>NAME</th>
+                            </tr>
+                            <tr>
+                                <td>#</td>
+                                <td>...your name could be here!</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-  </body>
+    </body>
 </html>
